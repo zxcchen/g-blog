@@ -1,0 +1,68 @@
+@bg: #333;
+@font-color: #fff;
+@white: #fff;
+@green: #42b983;
+@gray:#a1a6b1;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 0.14rem;
+}
+h1{
+  font-size: 0.26rem;
+}
+h2{
+  font-size: 0.24rem;
+}
+h3{
+  font-size: 0.22rem;
+}
+h4{
+  font-size: 0.20rem;
+}
+h5{
+  font-size: 0.18rem;
+}
+h6{
+  font-size: 0.16rem;
+}
+a {
+  text-decoration: none;
+  color: @bg;
+}
+.content {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: 0.14rem;
+    font-weight: 400;
+  }
+}
+// 动感链接
+.dynamic-link {
+  background-image: -webkit-linear-gradient(
+    left,
+    #147b96,
+    #e6d205 25%,
+    #147b96 50%,
+    #e6d205 75%,
+    #147b96
+  );
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-background-size: 200% 100%;
+  -webkit-animation: masked-animation 5s infinite linear;
+}
+@-webkit-keyframes masked-animation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
