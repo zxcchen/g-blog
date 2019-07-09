@@ -12,7 +12,7 @@ fn.projectList = {
       type: parma.query.type,
       isDelete: 0,
     };
-    if (JSON.stringify(req.cookies) !== '{}') {
+    if (req.cookies.user) {
       searchObj.userId = req.cookies.user.id
     }
     if (parseInt(parma.query.currentPage) > 0) {

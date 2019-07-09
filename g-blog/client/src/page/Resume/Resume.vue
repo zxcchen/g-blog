@@ -39,7 +39,7 @@
           <li>掌握Vue，日常结合ElementUI+Vue+ES6+Webpack+Node.js开发; </li>
           <li>掌握移动端开发，如:微信、小程序开发;掌握PC开发，开发并兼容iphone、Android、windows、ios平台; </li>
           <li>掌握面向对象，掌握ES6语法，熟练使用常用框架，熟悉node及相关构建工具，如npm、webpack; </li>
-          <li>掌握主流插件，能脱离插件使用JavaScript原生实现;</li>
+          <li>掌握主流插件，能脱离插件使用原生JavaScript实现;</li>
           <li>熟练使用各类工具辅助开发及测试; </li>
           <li>喜欢阅读源码，善于优化代码，具有良好编写规范，注重交互及用户体验;</li>
         </ol>
@@ -56,22 +56,7 @@
       <el-col :span="10">2018.07-至今</el-col>
     </el-row>
     <el-row :gutter="20">
-      <el-col :span="24">1.内部审批系统:多角色在线审批保单的平台，开发团队:1人。</el-col>
-    </el-row>
-    <el-row :gutter="20">
-      <el-col :span="24">
-        <p>工作内容:</p>
-        <ol>
-          <li>负责内部审批系统的基础框架搭建，ElementUI+Vue+ES6+Webpack搭建框架环境。</li>
-          <li>编写前端文档;维护系统的持续开发迭代，项目上线部署等工作。</li>
-          <li>平台支持多角色多权限控制页面;支持在线导入10万条数据，高效利用缓存进行大数据量的存储分配。</li>
-          <li>前端实现在线动态分页、增删查改及排序功能。结合animate优化用户体验。</li>
-        </ol>
-      </el-col>
-    </el-row>
-    <br />
-    <el-row :gutter="20">
-      <el-col :span="24">2.月报系统:多重数据与图表结合分析平台，开发团队:8人。</el-col>
+      <el-col :span="24">1.财务系统:多重数据与图表结合分析平台，开发团队:8人。</el-col>
     </el-row>
     <el-row :gutter="20">
       <el-col :span="24">
@@ -82,6 +67,21 @@
           <li>负责核心代码编写，将多重数据与页面图表结合，包含地图多级下钻联动，菜单多级下钻联动图标等功能。 </li>
           <li>负责与中台、数据库、产品等多部门联调协作，参与前端文档编写、接口文档编写。 </li>
           <li>指导组员在项目上进行二次开发，定期优化、审查项目代码。</li>
+        </ol>
+      </el-col>
+    </el-row>
+    <br />
+    <el-row :gutter="20">
+      <el-col :span="24">2.内部审批系统:多角色在线审批保单的平台，开发团队:1人。</el-col>
+    </el-row>
+    <el-row :gutter="20">
+      <el-col :span="24">
+        <p>工作内容:</p>
+        <ol>
+          <li>负责内部审批系统的基础框架搭建，ElementUI+Vue+ES6+Webpack搭建框架环境。</li>
+          <li>编写前端文档;维护系统的持续开发迭代，项目上线部署等工作。</li>
+          <li>平台支持多角色多权限控制页面;支持在线导入10万条数据，高效利用缓存进行大数据量的存储分配。</li>
+          <li>前端实现在线动态分页、增删查改及排序功能。结合animate优化用户体验。</li>
         </ol>
       </el-col>
     </el-row>
@@ -139,18 +139,23 @@ export default {
 @green: #42b983;
 
 .resume {
+  margin-top: 1rem;
   text-align: left;
+
   .header{
     background: @bg;
     color: @white;
   }
+
   .head-portrait{
     width: 1.5rem;
   }
+
   .title {
     border-left: 0.05rem solid @bg;
     font-weight: bolder;
   }
+  
   ol{
     margin-left: .5rem;
   }

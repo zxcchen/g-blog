@@ -7,6 +7,15 @@ import Axios from './http'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import store from './store'
+import socketIO from "vue-socket.io";
+import Mock from 'mockjs';
+
+Vue.prototype.mock = Mock;
+
+Vue.use(new socketIO({
+  debug: true,
+  connection:'http://localhost:3000'
+}));
 
 // markdown 编辑器
 import mavonEditor from 'mavon-editor'

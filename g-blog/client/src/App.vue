@@ -33,6 +33,7 @@ export default {
           this.activeIndex === "Login" ||
           this.$router.currentRoute.name === "ProjectView" ||
           this.activeIndex === "Resume" ||
+          this.activeIndex === "ChatRoom" ||
           this.activeIndex === "Article"
       };
     },
@@ -83,7 +84,7 @@ export default {
 .logo-activ {
   display: none;
   & + .view-box {
-    // margin-top: 1rem;
+    margin-top: 1rem;
   }
 }
 .box {

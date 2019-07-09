@@ -21,13 +21,13 @@
         :route="{path:'/Blog'}">博客</el-menu-item>
       <el-menu-item index="Project"
         :route="{path:'/Project'}">项目</el-menu-item>
-      <el-submenu index="3">
+      <!-- <el-submenu index="3">
         <template slot="title">切换主题</template>
         <el-menu-item index="3-1">简约</el-menu-item>
         <el-menu-item index="3-2">非主流</el-menu-item>
         <el-menu-item index="3-3">月光美少女</el-menu-item>
         <el-menu-item index="3-4">数码宝贝</el-menu-item>
-      </el-submenu>
+      </el-submenu> -->
     </el-menu>
     <div class="search-from">
       <el-input placeholder="搜索发现新世界 ^_^"

@@ -22,9 +22,11 @@
     "markdown-it-emoji": "^1.4.0",
     "mavon-editor": "^2.6.17",
     "mock": "^0.1.1",
+    "uws": "^100.0.1",
     "vue": "^2.5.2",
     "vue-markdown": "^2.2.4",
     "vue-router": "^3.0.2",
+    "vue-socket.io": "^3.0.7",
     "vuex": "^3.1.0"
   },
   "devDependencies": {
@@ -43,7 +45,7 @@
     "babel-preset-stage-2": "^6.22.0",
     "babel-register": "^6.22.0",
     "chalk": "^2.0.1",
-    "chromedriver": "^2.27.2",
+    "chromedriver": "^2.46.0",
     "copy-webpack-plugin": "^4.0.1",
     "cross-spawn": "^5.0.1",
     "css-loader": "^0.28.0",
@@ -62,6 +64,7 @@
     "html-webpack-plugin": "^2.30.1",
     "jest": "^22.0.4",
     "jest-serializer-vue": "^0.3.0",
+    "mockjs": "^1.0.1-beta3",
     "nightwatch": "^0.9.12",
     "node-notifier": "^5.1.2",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
