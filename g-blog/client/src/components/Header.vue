@@ -15,19 +15,21 @@
         index="1"
         title="点击退出登录"
         @click="logout">{{user.userName}}</el-menu-item> -->
-      <el-menu-item index="HomePage"
-        :route="{path:'/HomePage'}">Home</el-menu-item>
+      <!-- <el-menu-item index="HomePage"
+        :route="{path:'/HomePage'}">
+        <div style="width:8ch;"><span class="typing">Home</span></div>
+      </el-menu-item> -->
       <el-menu-item index="Blog"
         :route="{path:'/Blog'}">博客</el-menu-item>
-      <el-menu-item index="Project"
-        :route="{path:'/Project'}">项目</el-menu-item>
-      <el-submenu index="3">
+      <!-- <el-menu-item index="Project"
+        :route="{path:'/Project'}">项目</el-menu-item> -->
+      <!-- <el-submenu index="3">
         <template slot="title">切换主题</template>
         <el-menu-item index="3-1">简约</el-menu-item>
         <el-menu-item index="3-2">非主流</el-menu-item>
         <el-menu-item index="3-3">月光美少女</el-menu-item>
         <el-menu-item index="3-4">数码宝贝</el-menu-item>
-      </el-submenu>
+      </el-submenu> -->
     </el-menu>
     <div class="search-from">
       <el-input placeholder="搜索发现新世界 ^_^"
@@ -51,61 +53,61 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapMutations } from 'vuex';
 export default {
-  data() {
+  data () {
     return {
-      searchText: ""
-    };
+      searchText: ''
+    }
   },
   props: {},
   computed: {
-    ...mapGetters("main", {
-      activeIndex: "_nav"
+    ...mapGetters('main', {
+      activeIndex: '_nav'
     }),
-    ...mapGetters("user", {
-      user: "_user"
+    ...mapGetters('user', {
+      user: '_user'
     })
   },
   methods: {
-    ...mapMutations("user", ["setUser"]),
-    handleSelect() {},
-    logout() {
+    ...mapMutations('user', ['setUser']),
+    handleSelect () {},
+    logout () {
       this.axios
-        .get("/api/user/login")
+        .get('/api/user/login')
         .then(({ data: { code, data } }) => {
           if (code === 1000) {
-            this.setUser({});
-            this.$router.push({ name: "Login" });
+            this.setUser({})
+            this.$router.push({ name: 'Login' })
           }
         })
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     },
-    search() {
+    search () {
       this.axios
-        .get("/api/public/search")
+        .get('/api/public/search')
         .then(res => {
-          this.dataFromNode = res.data.timer;
+          this.dataFromNode = res.data.timer
         })
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     },
-    open() {
-      this.$alert("这是一段内容", "标题名称", {
-        confirmButtonText: "确定",
+    open () {
+      this.$alert('这是一段内容', '标题名称', {
+        confirmButtonText: '确定',
         callback: action => {
           this.$message({
-            type: "info",
+            type: 'info',
             message: `action: ${action}`
-          });
+          })
         }
-      });
+      })
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>
@@ -122,24 +124,46 @@ export default {
   background-color: @bg;
   color: @font-color;
   z-index: 2000;
+
   .el-menu-demo {
-    flex:1;
+    flex: 1;
   }
+
   .el-menu.el-menu--horizontal {
     margin-right: 0.2rem;
     border-bottom: none;
   }
+
   .a {
     display: inline-block;
     width: 100%;
     height: 100%;
   }
+
   .login-btn {
     text-align: right;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
+
     a {
       color: @font-color;
+    }
+  }
+
+  .typing {
+    display: inline-block;
+    width: 5ch;
+    font: bold 200% Consolas, Monaco, monospace; /*等宽字体*/
+    overflow: hidden;
+    white-space: nowrap;
+    font-weight: 500;
+    border-right: 1px solid transparent;
+    animation: typing 5s steps(5) infinite;
+  }
+
+  @keyframes typing {
+    from {
+      width: 0;
     }
   }
 }

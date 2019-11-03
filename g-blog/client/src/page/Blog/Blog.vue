@@ -11,6 +11,11 @@
       layout="prev, pager, next"
       :total="tabPaneData[tabIndex].total||0">
     </el-pagination>
+    <div class="btn-box">
+      <el-button type="primary"
+        @click="addArticle"
+        icon="el-icon-plus"></el-button>
+    </div>
   </div>
 </template>
 
@@ -127,6 +132,9 @@ export default {
           console.log(err);
         });
     },
+    addArticle(){
+      this.$router.push({name:"Article"})
+    }
   }
 };
 </script> 
@@ -145,6 +153,12 @@ export default {
   // width: 80%;
   // margin-left: auto;
   // margin-right: auto;
+  .btn-box {
+    position: fixed;
+    right: 0.5rem;
+    top: 2.5rem;
+    z-index: 1501;
+  }
 }
 </style>
 <style>

@@ -31,9 +31,9 @@ export default {
         logo: true,
         "logo-activ":
           this.activeIndex === "Login" ||
-          this.$router.currentRoute.name === "ProjectView" ||
-          this.activeIndex === "Resume" ||
-          this.activeIndex === "Article"
+          this.$router.currentRoute.name === "HomePage" ||
+          this.activeIndex === "Blog" ||
+          this.activeIndex === "Project" 
       };
     },
     headerClass() {
@@ -66,6 +66,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   .logo {
+    display: none;
     margin: auto;
     margin-top: 0.6rem;
     width: 100%;
@@ -74,17 +75,17 @@ export default {
   .unfixed-activ{
     position: relative;
   }
+  .logo-activ {
+    display: block;
+    & + .view-box {
+      margin-top: 1rem;
+    }
+  }
 }
 .view-box {
   margin: 0.1rem 0;
   padding: 0.15rem;
   padding-bottom: 1rem;
-}
-.logo-activ {
-  display: none;
-  & + .view-box {
-    // margin-top: 1rem;
-  }
 }
 .box {
   display: flex;

@@ -14,7 +14,7 @@ fn.articleList = {
     };
     let resultObj = {};
 
-    if (!JSON.stringify(req.cookies) === '{}') {
+    if (!JSON.stringify(req.cookies) === '{}'&&req.cookies.user) {
       searchObj.userId = req.cookies.user.id;
     }
     if (parseInt(parma.query.currentPage) > 0) {
@@ -138,7 +138,7 @@ fn.article = {
     });
   },
   POST: function (req, res, next) {//新建
-    if (JSON.stringify(req.cookies) === '{}') {
+    if (JSON.stringify(req.cookies) === '{}'||!req.cookies.user) {
       res.json({
         code: 1001,
         data: {},
@@ -179,7 +179,7 @@ fn.article = {
     }
   },
   PUT: function (req, res, next) {//更新
-    if (JSON.stringify(req.cookies) === '{}') {
+    if (JSON.stringify(req.cookies) === '{}'||!req.cookies.user) {
       res.json({
         code: 1001,
         data: {},
@@ -208,7 +208,7 @@ fn.article = {
     }
   },
   DELETE: function (req, res, next) {//删除
-    if (JSON.stringify(req.cookies) === '{}') {
+    if (JSON.stringify(req.cookies) === '{}'||!req.cookies.user) {
       res.json({
         code: 1001,
         data: {},
