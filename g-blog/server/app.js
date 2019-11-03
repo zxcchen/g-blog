@@ -5,6 +5,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var router = require('./routes/index');
 var bodyParser = require('body-parser');
+const multer = require('multer');
+var objMulter = multer({dest: './upload/'});
+var cors = require('cors')
 
 var db = require('./db');
 var app = express();
@@ -15,28 +18,23 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 app.use(bodyParser.json());
+app.use(objMulter.any());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
-  res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
-  res.header("Access-Control-Allow-Credentials", true);
-  res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
-  res.header("Access-Control-Max-Age", 86400);
-  if (req.method === 'OPTIONS') {
-    res.send(200);
-  } else {
-    next();
-  }
-});
+app.use(cors({
+  origin: "http://localhost:8080",
+  credentials: true
+}));
 
 app.use("/api", function (req, res, next) {
   router(req, res, next);
 });
+
+app.use('/staticResource', express.static('upload'));
 
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));

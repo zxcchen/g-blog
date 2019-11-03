@@ -1,34 +1,34 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
-import App from './App'
-import router from './router'
-import Axios from './http'
+import Vue from 'vue';
+import App from './App';
+import router from './router';
+import Axios from './http';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-import store from './store'
-import socketIO from "vue-socket.io";
+import store from './store';
+import socketIO from 'vue-socket.io';
 import Mock from 'mockjs';
 
-Vue.prototype.mock = Mock;
-
-Vue.use(new socketIO({
-  debug: true,
-  connection:'http://localhost:3000'
-}));
+// Vue.use(new socketIO({
+//   debug: true,
+//   connection:'http://localhost:3000'
+// }));
 
 // markdown 编辑器
-import mavonEditor from 'mavon-editor'
-import markdownitEmoji from 'markdown-it-emoji'
-import 'mavon-editor/dist/css/index.css'
-Vue.use(mavonEditor);
-mavonEditor.markdownIt.use(markdownitEmoji);
+import mavonEditor from 'mavon-editor';
+import markdownitEmoji from 'markdown-it-emoji';
+import 'mavon-editor/dist/css/index.css';
 
-Axios.defaults.withCredentials = true;
-Vue.prototype.axios = Axios;
+Vue.prototype.mock = Mock
+Vue.use(mavonEditor)
+mavonEditor.markdownIt.use(markdownitEmoji)
 
-Vue.use(ElementUI);
-Vue.config.productionTip = false;
+Axios.defaults.withCredentials = true
+Vue.prototype.axios = Axios
+
+Vue.use(ElementUI)
+Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({

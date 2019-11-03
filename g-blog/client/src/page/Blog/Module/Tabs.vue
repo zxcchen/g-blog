@@ -57,7 +57,7 @@
       </template>
       <template v-else>
         <div>空空如也</div>
-        <router-link :to="'/Blog/Article?type='+item.label"
+        <router-link to="/Blog/Article"
           class="dynamic-link">点击创建新文章吧</router-link>
       </template>
       <!-- </template> -->

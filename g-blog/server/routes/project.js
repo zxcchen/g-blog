@@ -83,7 +83,7 @@ fn.project = {
     });
   },
   POST: function (req, res, next) {//新建
-    if (JSON.stringify(req.cookies) === '{}') {
+    if (JSON.stringify(req.cookies) === '{}'||!req.cookies.user) {
       res.json({
         code: 1001,
         data: {},
@@ -126,7 +126,7 @@ fn.project = {
     }
   },
   PUT: function (req, res, next) {//更新
-    if (JSON.stringify(req.cookies) === '{}') {
+    if (JSON.stringify(req.cookies) === '{}'||!req.cookies.user) {
       res.json({
         code: 1001,
         data: {},
@@ -155,7 +155,7 @@ fn.project = {
     }
   },
   DELETE: function (req, res, next) {//删除
-    if (JSON.stringify(req.cookies) === '{}') {
+    if (JSON.stringify(req.cookies) === '{}'||!req.cookies.user) {
       res.json({
         code: 1001,
         data: {},

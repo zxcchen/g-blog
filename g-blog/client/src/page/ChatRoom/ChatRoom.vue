@@ -1,5 +1,5 @@
 <template>
-  <div style="padding-bottom:0.15rem;">
+  <div class="char-room">
     <div class="char-box">
       <!-- 此功能正在构建中... ヽ(￣ω￣(￣ω￣〃)ゝ -->
       <nav class="char-nav">
@@ -91,9 +91,13 @@ export default {
 @white: #fff;
 @green: #42b983;
 
+.char-room {
+  margin-top: 1rem;
+  padding-bottom:0.15rem;
+}
 .char-box {
   display: flex;
-  height: 5.5rem;
+  height: 6.5rem;
   border-radius: 0.1rem;
   box-shadow: 0 0 8px 0 rgba(232,237,250,.8), 0 2px 4px 0 rgba(232,237,250,.7);
   background-color: #A1B1DA;
@@ -114,7 +118,7 @@ export default {
 
   .chat-msg-box {
     flex: 1;
-    height: 4rem;
+    height: 5rem;
   }
 
   .chat-msg {

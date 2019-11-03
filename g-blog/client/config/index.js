@@ -16,6 +16,10 @@ module.exports = {
         pathRewrite: {
           '^/api': ''//地址/api’代替成'/'
         }
+      },
+      '/staticResource': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
       }
     },
 

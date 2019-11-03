@@ -23,6 +23,7 @@ fn.login = {
           id: data[0]._id,
           userName: data[0].account
         };
+        
         res.cookie("user", user, { maxAge: 900000, httpOnly: true });
         res.json({
           code: 1000,

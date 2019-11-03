@@ -16,7 +16,7 @@
   "dependencies": {
     "ajv": "^5.5.2",
     "axios": "^0.18.0",
-    "element-ui": "^2.5.4",
+    "element-ui": "^2.11.1",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
     "markdown-it-emoji": "^1.4.0",
