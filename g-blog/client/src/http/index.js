@@ -5,7 +5,7 @@ axios.defaults.validateStatus = function (status) {
   return status >= 200 && status < 500
 }
 axios.defaults.timeout = 50000
-axios.defaults.baseURL = 'http://localhost:3000'
+axios.defaults.baseURL = 'http://gblog.blink.ink:9020'
 axios.defaults.withCredentials = true
 
 var loadinginstace

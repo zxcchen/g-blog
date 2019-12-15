@@ -3,7 +3,11 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
-
+const dev_path = require('./dev.env')
+const prod_path = require('./prod.env')
+const curr_path = process.env.NODE_ENV === 'production' ? prod_path : dev_path
+const API_PATH = curr_path.API + curr_path.API_HOST
+console.log('API_PATH', process.env.NODE_ENV, API_PATH)
 module.exports = {
   dev: {
     // Paths
@@ -11,14 +15,14 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: 'http://localhost:3000',
+        target: API_PATH,
         changeOrigin: true,
         pathRewrite: {
-          '^/api': ''// 地址/api’代替成'/'
+          '^/api': '' // 地址/api’代替成'/'
         }
       },
       '/staticResource': {
-        target: 'http://localhost:3000',
+        target: API_PATH,
         changeOrigin: true
       }
     },
