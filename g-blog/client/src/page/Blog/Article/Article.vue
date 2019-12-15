@@ -20,9 +20,9 @@
       v-show="save">
       <h1 v-html="blog.viewTitle"></h1>
       <div class="article-tags">
-        <span v-for="i in blog.viewTags"
-          :key="i"
-          class="tag">{{i}}</span>
+        <span v-for="item in blog.viewTags"
+          :key="item.value"
+          class="tag">{{item.value}}</span>
       </div>
       <div v-html="blog.content"></div>
     </div>
@@ -87,31 +87,27 @@
 </template>
 
 <script>
-import { 
-  toolbars,
-  options,
-  pageType 
-} from "./config/index";
+import { toolbars, options, pageType } from './config/index'
 
 export default {
-  name: "Article",
-  data() {
+  name: 'Article',
+  data () {
     return {
       save: true,
       options: Object.freeze(options),
       pageType: Object.freeze(pageType),
       toolbars: Object.freeze(toolbars),
-      editorState: "",
+      editorState: '',
       blog: {
-        id: "",
-        title: "",
+        id: '',
+        title: '',
         tags: [],
-        content: "",
-        markdown: "",
+        content: '',
+        markdown: '',
         time: new Date().getTime(),
         type: 0
-      },
-    };
+      }
+    }
   },
   props: {
     collapseData: {
@@ -119,23 +115,23 @@ export default {
       required: false
     }
   },
-  created() {
-    if (this.$router.currentRoute.query.hasOwnProperty("id")) {
-      this.blog.id = this.$router.currentRoute.query.id;
-      this.getArticle();
+  created () {
+    if (this.$router.currentRoute.query.hasOwnProperty('id')) {
+      this.blog.id = this.$router.currentRoute.query.id
+      this.getArticle()
     } else {
-      this.addArticle();
+      this.addArticle()
     }
   },
   components: {},
   methods: {
-    toback() {
-      this.$router.push("/Blog");
+    toback () {
+      this.$router.push('/Blog')
     },
-    saveContent(value, render) {
-      this.blog.markdown = "";
-      this.save = true;
-      const tages = this.options.filter(v => this.blog.tags.includes(v.value));
+    saveContent (value, render) {
+      this.blog.markdown = ''
+      this.save = true
+      const tages = this.options.filter(v => this.blog.tags.includes(v.value))
       this.setArticle({
         title: this.blog.title,
         tags: JSON.stringify(tages),
@@ -143,134 +139,134 @@ export default {
         markdown: value,
         time: this.blog.time,
         type: this.blog.type
-      });
+      })
     },
-    reset() {
+    reset () {
       this.blog = {
-        title: "",
+        title: '',
         tags: [],
-        content: "",
-        markdown: "",
+        content: '',
+        markdown: '',
         time: new Date().getTime()
-      };
+      }
     },
-    getArticle() {
+    getArticle () {
       this.axios
-        .get("/api/page/article", {
+        .get('/api/page/article', {
           params: {
             id: this.blog.id
           }
         })
         .then(({ data: { code, data, message } }) => {
           if (code === 1000) {
-            this.blog.id = data.id;
-            this.blog.viewTitle = data.title;
-            this.blog.title = data.title;
-            (this.blog.viewTags = data.tags.map(v => v.value)),
-              (this.blog.tags = this.blog.viewTags);
-            this.blog.content = data.content;
-            this.blog.markdown = data.markdown;
-            this.blog.type = data.type;
+            this.blog.id = data.id
+            this.blog.viewTitle = data.title
+            this.blog.title = data.title
+            this.blog.viewTags = data.tags.map(v => v.value)
+            this.blog.tags = this.blog.viewTags
+            this.blog.content = data.content
+            this.blog.markdown = data.markdown
+            this.blog.type = data.type
           }
         })
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     },
-    setArticle(obj) {
-      const method = this.editorState === "add" ? "post" : "put";
-      if (this.editorState === "update" && this.blog.id) {
-        obj.id = this.blog.id;
+    setArticle (obj) {
+      const method = this.editorState === 'add' ? 'post' : 'put'
+      if (this.editorState === 'update' && this.blog.id) {
+        obj.id = this.blog.id
       }
       this.axios({
         method,
-        url: "/api/page/article",
+        url: '/api/page/article',
         data: obj
       }).then(({ data: { code, data, message } }) => {
         if (code === 1001) {
-          this.$confirm("游客无权限发表文章", "提示", {
-            confirmButtonText: "去登录",
-            cancelButtonText: "再逛逛"
+          this.$confirm('游客无权限发表文章', '提示', {
+            confirmButtonText: '去登录',
+            cancelButtonText: '再逛逛'
           })
             .then(() => {
-              this.$router.push({ name: "Login" });
+              this.$router.push({ name: 'Login' })
             })
-            .catch(() => {});
-          return;
+            .catch(() => {})
+          return
         }
-        data.viewTags = data.tags.split(",");
-        data.tags = data.tags.split(",");
-        data.viewTitle = data.title;
-        this.blog = data;
+        data.viewTags = data.tags
+        data.tags = data.tags
+        data.viewTitle = data.title
+        this.blog = data
         this.$message({
           message,
-          type: "success"
-        });
-      });
+          type: 'success'
+        })
+      })
     },
-    addArticle() {
-      this.save = false;
-      this.editorState = "add";
-      this.reset();
+    addArticle () {
+      this.save = false
+      this.editorState = 'add'
+      this.reset()
     },
-    updateArticle() {
-      this.save = false;
-      this.editorState = "update";
+    updateArticle () {
+      this.save = false
+      this.editorState = 'update'
     },
-    delArticle() {
-      //axios实现delete请求，默认第二个参数是config，其它请求的第二个参数是data，所以delete请求数据需要包裹一层
+    delArticle () {
+      // axios实现delete请求，默认第二个参数是config，其它请求的第二个参数是data，所以delete请求数据需要包裹一层
       this.axios
-        .delete("/api/page/article", {
+        .delete('/api/page/article', {
           data: { id: this.blog.id }
         })
         .then(({ data: { code, data, message } }) => {
           if (code === 1000) {
             this.$message({
               message,
-              type: "success"
-            });
-            this.$router.push({ name: "Blog" });
+              type: 'success'
+            })
+            this.$router.push({ name: 'Blog' })
           }
         })
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     },
-    getMsg() {
+    getMsg () {
       this.axios
-        .get("/api/page/msg")
+        .get('/api/page/msg')
         .then(res => {})
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     },
-    addMsg() {
+    addMsg () {
       this.axios
-        .post("/api/page/msg")
+        .post('/api/page/msg')
         .then(res => {})
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     },
-    updateMsg() {
+    updateMsg () {
       this.axios
-        .put("/api/page/msg")
+        .put('/api/page/msg')
         .then(res => {})
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     },
-    delMsg() {
+    delMsg () {
       this.axios
-        .delete("/api/page/msg")
+        .delete('/api/page/msg')
         .then(res => {})
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     }
   }
-};
-</script> 
+}
+</script>
 
 <style lang="less" scoped>
 @bg: #333;
@@ -324,4 +320,3 @@ export default {
   box-shadow: 0 0px 0px rgba(0, 0, 0, 0.157), 0 1px 4px rgba(0, 0, 0, 0.227) !important;
 }
 </style>
-

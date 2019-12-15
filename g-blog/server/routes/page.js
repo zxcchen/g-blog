@@ -163,7 +163,7 @@ fn.article = {
               title: obj.title,
               content: obj.content,
               markdown: obj.markdown,
-              tags: JSON.parse(item.tags),
+              tags: JSON.parse(obj.tags),
               time: obj.time,
             },
             message: "保存成功"
@@ -175,7 +175,9 @@ fn.article = {
             message: "数据保存失败"
           });
         }
-      });
+      }).catch(e=>{
+        console.log('article-post',e)
+      })
     }
   },
   PUT: function (req, res, next) {//更新

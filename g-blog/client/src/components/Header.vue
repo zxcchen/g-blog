@@ -8,22 +8,15 @@
       text-color="#fff"
       active-text-color="#ffd04b"
       :router="true">
-      <!-- <el-menu-item v-if="!user.userName"
-        index="Login"
-        :route="{path:'/Login'}">登录</el-menu-item>
-      <el-menu-item v-else
-        index="1"
-        title="点击退出登录"
-        @click="logout">{{user.userName}}</el-menu-item> -->
-      <!-- <el-menu-item index="HomePage"
+      <el-menu-item index="HomePage"
         :route="{path:'/HomePage'}">
-        <div style="width:8ch;"><span class="typing">Home</span></div>
-      </el-menu-item> -->
+        <div style="width:8ch;"><span class="">Home</span></div>
+      </el-menu-item>
       <el-menu-item index="Blog"
         :route="{path:'/Blog'}">博客</el-menu-item>
       <!-- <el-menu-item index="Project"
-        :route="{path:'/Project'}">项目</el-menu-item> -->
-      <!-- <el-submenu index="3">
+        :route="{path:'/Project'}">项目</el-menu-item>
+      <el-submenu index="3">
         <template slot="title">切换主题</template>
         <el-menu-item index="3-1">简约</el-menu-item>
         <el-menu-item index="3-2">非主流</el-menu-item>
@@ -53,7 +46,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex'
 export default {
   data () {
     return {

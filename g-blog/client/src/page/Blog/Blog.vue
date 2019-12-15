@@ -20,55 +20,55 @@
 </template>
 
 <script>
-import Tabs from "./Module/Tabs";
-import { mapGetters, mapMutations } from "vuex";
+import Tabs from './Module/Tabs';
+import { mapGetters, mapMutations } from 'vuex';
 export default {
-  name: "Blog",
-  data() {
+  name: 'Blog',
+  data () {
     return {
-      tabInd: "code",
-      currentPage:1,
+      tabInd: 'code',
+      currentPage: 1,
       tabPaneData: [
         {
-          label: "前端",
-          name:"code",
+          label: '前端',
+          name: 'code',
           article: [],
-          total:0,
-          icon:"/static/img/code.png",
-          type:'0'
+          total: 0,
+          icon: '/static/img/code.png',
+          type: '0'
         },
         {
-          label: "后台",
-          name:"db",
+          label: '后台',
+          name: 'db',
           article: [],
-          total:0,
-          icon:"/static/img/db.png",
-          type:'1'
+          total: 0,
+          icon: '/static/img/db.png',
+          type: '1'
         },
         {
-          label: "生活",
-          name:"life",
+          label: '生活',
+          name: 'life',
           article: [],
-          total:0,
-          icon:"/static/img/life.png",
-          type:'2'
+          total: 0,
+          icon: '/static/img/life.png',
+          type: '2'
         },
         {
-          label: "轨迹",
-          name:"folder",
+          label: '轨迹',
+          name: 'folder',
           article: [],
-          total:0,
-          icon:"/static/img/folder.png",
-          type:'3'
+          total: 0,
+          icon: '/static/img/folder.png',
+          type: '3'
         },
         {
-          label: "标签",
-          name:"label",
+          label: '标签',
+          name: 'label',
           article: [],
-          total:0,
-          icon:"/static/img/label.png",
-          type:'4'
-        },
+          total: 0,
+          icon: '/static/img/label.png',
+          type: '4'
+        }
         // idea: {
         //   label: "说说",
         //   name:"idea",
@@ -77,22 +77,23 @@ export default {
         //   icon:"/static/img/idea.png",
         //   type:6
         // },
-        
       ]
-    };
-  },
-  computed: {
-    ...mapGetters("main", {
-      activeIndex: "_nav"
-    }),
-    tabIndex(){
-      const [result] = this.tabPaneData.filter(v=>v.name===this.tabInd).map(v=>v.type)
-      return result||0;
     }
   },
-  mounted() {},
+  computed: {
+    ...mapGetters('main', {
+      activeIndex: '_nav'
+    }),
+    tabIndex () {
+      const [result] = this.tabPaneData
+        .filter(v => v.name === this.tabInd)
+        .map(v => v.type)
+      return result || 0
+    }
+  },
+  mounted () {},
   components: {
-    "v-tabs": Tabs
+    'v-tabs': Tabs
   },
   props: {
     collapseData: {
@@ -100,44 +101,44 @@ export default {
       required: false
     }
   },
-  created() {
-    this.getArticleList(1);
+  created () {
+    this.getArticleList(1)
   },
   methods: {
-    ...mapMutations("main", ["setNav"]),
+    ...mapMutations('main', ['setNav']),
     // 获取该
-    tabActiveInd(ind) {
-      this.tabInd = ind;
-      this.getArticleList(this.currentPage);
+    tabActiveInd (ind) {
+      this.tabInd = ind
+      this.getArticleList(this.currentPage)
     },
-    getArticleList(currentPage) {
-      const type = this.tabIndex;
+    getArticleList (currentPage) {
+      const type = this.tabIndex
       this.axios
-        .get("/api/page/articleList", {
+        .get('/api/page/articleList', {
           params: {
             currentPage,
             pageSize: 5,
-            type: parseInt(type)+1
+            type: parseInt(type) + 1
           }
         })
         .then(({ data: { code, data, message } }) => {
           if (code === 1000) {
-            this.tabPaneData[type].article = data.article;
+            this.tabPaneData[type].article = data.article
             // if(currentPage===1){
-            this.tabPaneData[type].total = data.total;
+            this.tabPaneData[type].total = data.total
             // }
           }
         })
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     },
-    addArticle(){
-      this.$router.push({name:"Article"})
+    addArticle () {
+      this.$router.push({ name: 'Article' })
     }
   }
-};
-</script> 
+}
+</script>
 
 <style lang="less" scoped>
 @bg: #333;
@@ -149,7 +150,7 @@ export default {
   margin-top: 0.1rem;
   margin-left: 1.2rem;
 }
-.blog{
+.blog {
   // width: 80%;
   // margin-left: auto;
   // margin-right: auto;
@@ -165,11 +166,11 @@ export default {
 .blog .el-tabs__active-bar {
   background-color: #42b983;
 }
-.blog .el-tabs__item.is-active{
+.blog .el-tabs__item.is-active {
   background: #42b983;
   color: #fff;
 }
-.blog .el-tabs--left .el-tabs__item.is-left:hover{
+.blog .el-tabs--left .el-tabs__item.is-left:hover {
   color: #42b983;
 }
 </style>
